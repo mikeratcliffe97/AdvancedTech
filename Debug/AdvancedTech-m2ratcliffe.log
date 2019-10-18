@@ -1,0 +1,7 @@
+﻿main.obj : error LNK2019: unresolved external symbol _D3D11CreateDeviceAndSwapChain@48 referenced in function "bool __cdecl InitializeDirect3d11App(struct HINSTANCE__ *)" (?InitializeDirect3d11App@@YA_NPAUHINSTANCE__@@@Z)
+main.obj : error LNK2019: unresolved external symbol _D3DX11CompileFromFileA@44 referenced in function "bool __cdecl InitScene(void)" (?InitScene@@YA_NXZ)
+MSVCRTD.lib(exe_main.obj) : error LNK2019: unresolved external symbol _main referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3d11.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dx11.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64\d3dx10.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\Debug\AdvancedTech-m2ratcliffe.exe : fatal error LNK1120: 3 unresolved externals
