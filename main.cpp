@@ -102,6 +102,20 @@ XMVECTOR camPosition;
 XMVECTOR camTarget;
 XMVECTOR camUp;
 
+XMVECTOR DefaultForward = XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
+XMVECTOR DefaultRight = XMVectorSet(1.0f, 0.0f, 0.0f, 0.0f);
+XMVECTOR camForward = XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
+XMVECTOR camRight = XMVectorSet(1.0f, 0.0f, 0.0f, 0.0f);
+
+XMMATRIX camRotationMatrix;
+XMMATRIX groundWorld;
+
+float moveLeftRight = 0.0f;
+float moveBackForward = 0.0f;
+
+float camYaw = 0.0f;
+float camPitch = 0.0f;
+
 XMMATRIX Rotation;
 XMMATRIX Scale;
 XMMATRIX Translation;
@@ -124,7 +138,7 @@ void DrawScene();
 bool InitD2D_D3D101_DWrite(IDXGIAdapter1* Adapter);
 void InitD2DScreenTexture();
 void UpdateScene(double time);
-
+void UpdateCamera();
 void RenderText(std::wstring text, int inInt);
 
 void StartTimer();
@@ -507,36 +521,69 @@ void DetectInput(double time)
 	DIMouse->Acquire();
 
 	DIMouse->GetDeviceState(sizeof(DIMOUSESTATE), &mouseCurrState);
-
+	
 	DIKeyboard->GetDeviceState(sizeof(keyboardState), (LPVOID)&keyboardState);
+
+
+	//float fwKeys = GET_KEYSTATE_WPARAM(wParam);
+	// double zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
 
 	if (keyboardState[DIK_ESCAPE] & 0x80)
 		PostMessage(hwnd, WM_DESTROY, 0, 0);
 
 	if (keyboardState[DIK_LEFT] & 0x80)
 	{
-		rotz -= 1.0f * time;
+		scaleX -= 1.0f * time;
 	}
 	if (keyboardState[DIK_RIGHT] & 0x80)
 	{
-		rotz += 1.0f * time;
+		scaleX += 1.0f * time;
 	}
 	if (keyboardState[DIK_UP] & 0x80)
 	{
-		rotx += 1.0f * time;
+		scaleY += 1.0f * time;
 	}
 	if (keyboardState[DIK_DOWN] & 0x80)
 	{
-		rotx -= 1.0f * time;\
+		scaleY -= 1.0f * time;\
 	}
-	if (mouseCurrState.lX != mouseLastState.lX)
+	//if (mouseCurrState.lX != mouseLastState.lX)
+	//{
+	//	rotx -= (mouseCurrState.lX * 0.001f);
+	//}
+	//if (mouseCurrState.lY != mouseLastState.lY)
+	//{
+	//	rotz -= (mouseCurrState.lY * 0.001f);
+	//}
+
+
+	float speed = 15.0f * time;
+
+	if (keyboardState[DIK_A] & 0x80)
 	{
-		scaleX -= (mouseCurrState.lX * 0.001f);
+		moveLeftRight -= speed;
 	}
-	if (mouseCurrState.lY != mouseLastState.lY)
+	if (keyboardState[DIK_D] & 0x80)
 	{
-		scaleY -= (mouseCurrState.lY * 0.001f);
+		moveLeftRight += speed;
 	}
+	if (keyboardState[DIK_W] & 0x80)
+	{
+		moveBackForward += speed;
+	}
+	if (keyboardState[DIK_S] & 0x80)
+	{
+		moveBackForward -= speed;
+	}
+	if ((mouseCurrState.lX != mouseLastState.lX) || (mouseCurrState.lY != mouseLastState.lY))
+	{
+		camYaw += mouseLastState.lX * 0.001f;
+
+		camPitch += mouseCurrState.lY * 0.001f;
+
+		mouseLastState = mouseCurrState;
+	}
+
 
 	if (rotx > 6.28)
 	{
@@ -555,7 +602,7 @@ void DetectInput(double time)
 		rotz = 6.28 + rotz;
 	}
 	mouseLastState = mouseCurrState;
-
+	UpdateCamera();
 	return;
 }
 ///////////////**************new**************////////////////////
@@ -737,6 +784,7 @@ bool InitScene()
 		// Left Face
 		16, 17, 18,
 		16, 18, 19,
+	
 
 		// Right Face
 		20, 21, 22,
@@ -849,7 +897,7 @@ bool InitScene()
 	blendDesc.AlphaToCoverageEnable = false;
 	blendDesc.RenderTarget[0] = rtbd;
 
-	hr = D3DX11CreateShaderResourceViewFromFile(d3d11Device, "test.png",
+	hr = D3DX11CreateShaderResourceViewFromFile(d3d11Device, "pine.png",
 		NULL, NULL, &CubesTexture, NULL);
 
 	// Describe the Sample State
@@ -935,7 +983,7 @@ void UpdateScene(double time)
 	Rotation = XMMatrixRotationAxis(rotyaxis, rot);
 	Rotationx = XMMatrixRotationAxis(rotxaxis, rotx);
 	Rotationz = XMMatrixRotationAxis(rotzaxis, rotz);
-	Translation = XMMatrixTranslation(0.0f, 0.0f, 4.0f);
+	Translation = XMMatrixTranslation(0.0f, 0.0f, -4.0f);
 
 	//Set cube1's world space using the transformations
 	cube1World = Translation * Rotation * Rotationx * Rotationz;
@@ -1033,7 +1081,7 @@ void RenderText(std::wstring text, int inInt)
 void DrawScene()
 {
 	//Clear our render target and depth/stencil view
-	float bgColor[4] = { (3.0f, 3.0f, 3.0f, 3.0f) };
+	float bgColor[4] = { (0.0f, 0.0f, 0.0f, 3.0f) };
 	d3d11DevCon->ClearRenderTargetView(renderTargetView, bgColor);
 	d3d11DevCon->ClearDepthStencilView(depthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
@@ -1149,4 +1197,28 @@ LRESULT CALLBACK WndProc(HWND hwnd,
 		msg,
 		wParam,
 		lParam);
+}
+
+void UpdateCamera()
+{
+	camRotationMatrix = XMMatrixRotationRollPitchYaw(camPitch, camYaw, 0);
+	camTarget = XMVector3TransformCoord(DefaultForward, camRotationMatrix);
+	camTarget = XMVector3Normalize(camTarget);
+
+	XMMATRIX RotateYTempMatrix;
+	RotateYTempMatrix = XMMatrixRotationY(camYaw);
+
+	camRight = XMVector3TransformCoord(DefaultRight, RotateYTempMatrix);
+	camUp = XMVector3TransformCoord(camUp, RotateYTempMatrix);
+	camForward = XMVector3TransformCoord(DefaultForward, RotateYTempMatrix);
+
+	camPosition += moveLeftRight * camRight;
+	camPosition += moveBackForward * camForward;
+
+	moveLeftRight = 0.0f;
+	moveBackForward = 0.0f;
+
+	camTarget = camPosition + camTarget;
+
+	camView = XMMatrixLookAtLH(camPosition, camTarget, camUp);
 }

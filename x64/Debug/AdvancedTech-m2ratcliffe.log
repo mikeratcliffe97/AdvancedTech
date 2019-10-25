@@ -190,16 +190,17 @@ C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dwrite.h(4993,1): warning C4005: 'DWRITE_E_ALREADYREGISTERED': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56841): message : see previous definition of 'DWRITE_E_ALREADYREGISTERED'
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\winerror.h(56841): message : C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\main.cpp(518,22): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\main.cpp(522,22): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\main.cpp(526,22): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\main.cpp(530,22): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\main.cpp(543,15): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\main.cpp(547,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\main.cpp(551,15): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\main.cpp(555,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\main.cpp(914,15): warning C4244: '=': conversion from 'float' to '__int64', possible loss of data
-C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\main.cpp(922,20): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\main.cpp(994,2): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
-C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\main.cpp(1128,12): warning C4244: 'return': conversion from 'WPARAM' to 'int', possible loss of data
-  AdvancedTech-m2ratcliffe.vcxproj -> C:\Users\Mike\Documents\University\Year 3\AdvancedTech-m2ratcliffe\x64\Debug\AdvancedTech-m2ratcliffe.exe
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech\main.cpp(536,24): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech\main.cpp(540,24): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech\main.cpp(544,24): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech\main.cpp(548,24): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech\main.cpp(560,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech\main.cpp(590,15): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech\main.cpp(594,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech\main.cpp(598,15): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech\main.cpp(602,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech\main.cpp(962,15): warning C4244: '=': conversion from 'float' to '__int64', possible loss of data
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech\main.cpp(970,20): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech\main.cpp(1042,2): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
+C:\Users\Mike\Documents\University\Year 3\AdvancedTech\main.cpp(1176,12): warning C4244: 'return': conversion from 'WPARAM' to 'int', possible loss of data
+  AdvancedTech-m2ratcliffe.vcxproj -> C:\Users\Mike\Documents\University\Year 3\AdvancedTech\x64\Debug\AdvancedTech-m2ratcliffe.exe
