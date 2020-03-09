@@ -1,6 +1,6 @@
 #include"Game.h"
 #include"GameSprite.h"
-
+using namespace DirectX;
 
 struct VertexOfPositionUV
 {

@@ -133,9 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <DeploymentContent>true</DeploymentContent>
-    </ClCompile>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +152,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Scene.h" />
   </ItemGroup>
   <ItemGroup>
