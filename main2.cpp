@@ -1,4 +1,5 @@
-#include "main.h"
+#include "main2.h"
+using namespace DirectX;
 
 int WINAPI WinMain(HINSTANCE hInstance,    //Main windows function
 	HINSTANCE hPrevInstance,
@@ -568,9 +569,12 @@ bool InitScene()
 	InitD2DScreenTexture();
 
 	//Compile Shaders from shader file
-	hr = D3DX11CompileFromFile("Effects.fx", 0, 0, "VS", "vs_4_0", 0, 0, 0, &VS_Buffer, 0, 0);
-	hr = D3DX11CompileFromFile("Effects.fx", 0, 0, "PS", "ps_4_0", 0, 0, 0, &PS_Buffer, 0, 0);
-	hr = D3DX11CompileFromFile("Effects.fx", 0, 0, "D2D_PS", "ps_4_0", 0, 0, 0, &D2D_PS_Buffer, 0, 0);
+	
+	
+	//hr = D3DCompileFromFile(L"Effects.fx", 0, 0, "VS", "vs_4_0", 0, 0, 0, &VS_Buffer);
+	hr = D3DCompileFromFile(L"Effects.fx", NULL, NULL, "vs", "vs_5_0", D3D10_SHADER_ENABLE_STRICTNESS, 0, NULL, NULL, NULL, NULL);
+	hr = D3DCompileFromFile(L"Effects.fx", 0, 0, "PS", "ps_4_0", 0, 0, 0, &PS_Buffer);
+	hr = D3DCompileFromFile(L"Effects.fx", 0, 0, "D2D_PS", "ps_4_0", 0, 0, 0, &D2D_PS_Buffer);
 
 	//Create the Shader Objects
 	hr = d3d11Device->CreateVertexShader(VS_Buffer->GetBufferPointer(), VS_Buffer->GetBufferSize(), NULL, &VS);
@@ -758,8 +762,8 @@ bool InitScene()
 	blendDesc.AlphaToCoverageEnable = false;
 	blendDesc.RenderTarget[0] = rtbd;
 
-	hr = D3DX11CreateShaderResourceViewFromFile(d3d11Device, "pine.png",
-		NULL, NULL, &CubesTexture, NULL);
+	/*hr = D3DX11CreateShaderResourceViewFromFile(d3d11Device, "pine.png",
+		NULL, NULL, &CubesTexture, NULL);*/
 
 	// Describe the Sample State
 	D3D11_SAMPLER_DESC sampDesc;

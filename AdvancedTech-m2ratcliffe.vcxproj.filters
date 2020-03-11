@@ -18,10 +18,7 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
+    <ClCompile Include="main2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -37,7 +34,10 @@
     <ClInclude Include="Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="sdtafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
