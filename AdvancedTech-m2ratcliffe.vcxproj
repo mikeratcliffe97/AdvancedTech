@@ -133,7 +133,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PixelShader.hlsl">
@@ -151,9 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
-    <ClInclude Include="main2.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="sdtafx.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="test.png" />
