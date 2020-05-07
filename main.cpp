@@ -299,7 +299,7 @@ bool InitDirectInput(HINSTANCE hInstance)
 
 void DetectInput(double time)
 {
-	
+
 	DIMOUSESTATE mouseCurrState;
 
 	BYTE keyboardState[256];
@@ -308,7 +308,7 @@ void DetectInput(double time)
 	DIMouse->Acquire();
 
 	DIMouse->GetDeviceState(sizeof(DIMOUSESTATE), &mouseCurrState);
-	
+
 	DIKeyboard->GetDeviceState(sizeof(keyboardState), (LPVOID)&keyboardState);
 
 
@@ -317,36 +317,39 @@ void DetectInput(double time)
 
 	if (keyboardState[DIK_ESCAPE] & 0x80)
 		PostMessage(hwnd, WM_DESTROY, 0, 0);
+	
+	
+
 	switch (placementmode)
 	{
-		case 0:
+	case 0:
 	{
 		if (keyboardState[DIK_LEFT] & 0x80)
 		{
 			tranX -= 4.0f * time;
-			
+
 		}
 		if (keyboardState[DIK_RIGHT] & 0x80)
 		{
 			tranX += 4.0f * time;
-			
+
 		}
 		if (keyboardState[DIK_UP] & 0x80)
 		{
 			tranY += 4.0f * time;
-			
+
 		}
 		if (keyboardState[DIK_DOWN] & 0x80)
 		{
 			tranY -= 4.0f * time;
-		
+
 		}
 
 		if (keyboardState[DIK_TAB] & 0x80)
 		{
 			placementmode = 1;
 			break;
-		
+
 		}
 		break;
 	}
@@ -404,7 +407,7 @@ void DetectInput(double time)
 		}
 		break;
 	}
-	
+
 	}
 	//if (mouseCurrState.lX != mouseLastState.lX)
 	//{
@@ -518,7 +521,7 @@ void InitD2DScreenTexture()
 		Vertex(-1.0f,  1.0f, -1.0f, 0.0f, 0.0f,-1.0f,  1.0f, -1.0f),
 		Vertex(1.0f,  1.0f, -1.0f, 1.0f, 0.0f, 1.0f,  1.0f, -1.0f),
 		Vertex(1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f),
-	
+
 
 	};
 
@@ -593,7 +596,7 @@ bool InitScene()
 		Vertex(-1.0f,  1.0f, -1.0f, 0.0f, 0.0f,-1.0f,  1.0f, -1.0f),
 		Vertex(1.0f,  1.0f, -1.0f, 1.0f, 0.0f, 1.0f,  1.0f, -1.0f),
 		Vertex(1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f),
-		
+
 		// Back Face
 		Vertex(-1.0f, -1.0f, 1.0f, 1.0f, 1.0f,-1.0f, -1.0f, 1.0f),
 		Vertex(1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, -1.0f, 1.0f),
@@ -645,7 +648,7 @@ bool InitScene()
 		// Left Face
 		16, 17, 18,
 		16, 18, 19,
-	
+
 
 		// Right Face
 		20, 21, 22,
@@ -859,8 +862,9 @@ void UpdateScene(double time)
 	Scale = XMMatrixScaling(scaleX, scaleY, 1.3f);
 	///////////////**************new**************////////////////////
 
+	
 	//Set cube2's world space matrix
-	cube2World = Rotation * Scale;
+	//cube2World = Rotation * Scale;
 }
 
 void RenderText(std::wstring text, int inInt)
